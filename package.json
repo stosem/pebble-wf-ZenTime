@@ -1,0 +1,77 @@
+{
+    "author": "stosem",
+    "dependencies": {
+        "pebble-clay": "^1.0.4"
+    },
+    "keywords": [],
+    "name": "dial",
+    "description": "Zen Time",
+    "license": "GPL-3.0",
+    "repository": {
+    	"type": "git",
+    	"url": "git://github.com/stosem/pebble-wf-ZenTime.git"
+  	},
+  	"keywords": [
+    	"clock",
+    	"analog",
+    	"watchface",
+		"zen",
+		"minimal",
+		"quiettime",
+        "bluettooth"
+  	],
+  	"bugs": {
+    "url": "https://github.com/stosem/pebble-wf-ZenTime/issues"
+  	},
+	"homepage": "https://github.com/stosem/pebble-wf-ZenTime",
+    "pebble": {
+        "capabilities": [
+            "configurable"
+        ],
+        "displayName": "Zen Time",
+        "enableMultiJS": true,
+        "messageKeys": [
+            "KEY_INVERT_COLORS",
+            "KEY_VIBRATE_ON_BT_LOST",
+            "KEY_REFRESH_INTERVAL",
+            "KEY_BATTERY_WARNING",
+            "KEY_VIBRATE_INTERVAL"
+        ],
+        "projectType": "native",
+        "resources": {
+            "media": [
+                {
+                    "file": "images/menu_icon.png",
+                    "menuIcon": true,
+                    "name": "menu_icon",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "fonts/Jeepney.ttf",
+                    "name": "WORD_FONT_40",
+                    "targetPlatforms": null,
+                    "type": "font"
+                },
+                {
+                    "file": "fonts/StolzlThin.ttf",
+                    "name": "STATUS_FONT_12",
+                    "targetPlatforms": null,
+                    "type": "font"
+                }
+            ]
+        },
+        "sdkVersion": "3",
+        "targetPlatforms": [
+            "aplite",
+            "basalt",
+            "chalk",
+            "diorite"
+        ],
+        "uuid": "5d3a2544-993e-45ca-b63a-eb5c8b670eff",
+        "watchapp": {
+            "watchface": true
+        }
+    },
+    "version": "1.0.0"
+}
