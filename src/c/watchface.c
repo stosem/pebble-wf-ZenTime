@@ -60,7 +60,7 @@ static void config_save() {
 static void status_clear() {
     status.changed=true;
     status.is_charging=false;
-    status.is_battery_discharged=0;
+    status.is_battery_discharged=false;
     status.is_bt_connected=false;
     status.is_quiet_time=false;
 };
@@ -209,7 +209,7 @@ static void update_proc_o(Layer *layer, GContext *ctx) {
     angle = TRIG_MAX_ANGLE * (t->tm_min) / 60;  
     t_center.x = (int)(sin_lookup(angle) * (int)(radius+3) / TRIG_MAX_RATIO) + center.x,
     t_center.y = (int)(-cos_lookup(angle) * (int)(radius+3) / TRIG_MAX_RATIO) + center.y,
-    draw_circle( ctx, settings.BackgroundColor, t_center, 1, 3 );
+    draw_circle( ctx, settings.BackgroundColor, t_center, 1, 2 );
   };
 };
 
@@ -259,7 +259,10 @@ static void handler_tick(struct tm *tick_time, TimeUnits units_changed) {
 /////////////////////////////////////
 static void handler_battery(BatteryChargeState charge_state) {
 #ifdef DEBUG
-  APP_LOG(APP_LOG_LEVEL_DEBUG,"Run: handler battery");
+  APP_LOG( APP_LOG_LEVEL_DEBUG,"Run: handler battery. percent=%d, warning=%d, flag=%s", 
+          charge_state.charge_percent, 
+          settings.BatteryWarning,
+          status.is_battery_discharged?"true":"false" );
 #endif
   bool bd = ( charge_state.charge_percent <= settings.BatteryWarning );
   if ( status.is_battery_discharged != bd ) {
@@ -384,7 +387,7 @@ static void main_window_load(Window *window) {
   layer_add_child(window_layer, s_main_layer);  
   
  // create status layer text
-  s_status_layer = text_layer_create(GRect(PBL_IF_ROUND_ELSE(26, 10), PBL_IF_ROUND_ELSE(130, 140), 128, 32));
+  s_status_layer = text_layer_create(GRect(PBL_IF_ROUND_ELSE(26, 12), PBL_IF_ROUND_ELSE(125, 135), 120, 32));
   text_layer_set_background_color(s_status_layer, GColorClear); // xxx
   text_layer_set_text_alignment(s_status_layer, GTextAlignmentCenter);
   text_layer_set_font(s_status_layer, s_status_font);
@@ -458,7 +461,7 @@ static void init() {
   layer_add_child(window_sec_layer, s_o_layer);
   
   // subscribe to time events
-  tick_timer_service_subscribe(MINUTE_UNIT, handler_tick); /
+  tick_timer_service_subscribe(MINUTE_UNIT, handler_tick); 
 
   // register with Battery State Service
   battery_state_service_subscribe(handler_battery);

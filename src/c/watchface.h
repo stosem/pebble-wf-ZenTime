@@ -5,7 +5,7 @@
 // font variables //
 ////////////////////
 #define WORD_FONT RESOURCE_ID_WORD_FONT_40
-#define STATUS_FONT RESOURCE_ID_STATUS_FONT_12
+#define STATUS_FONT RESOURCE_ID_STATUS_FONT_13
 
 // persistent storage keys
 #define SETTINGS_KEY 1

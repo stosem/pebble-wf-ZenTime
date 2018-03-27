@@ -54,8 +54,8 @@
                     "type": "font"
                 },
                 {
-                    "file": "fonts/StolzlThin.ttf",
-                    "name": "STATUS_FONT_12",
+                    "file": "fonts/exo2.ttf",
+                    "name": "STATUS_FONT_13",
                     "targetPlatforms": null,
                     "type": "font"
                 }
