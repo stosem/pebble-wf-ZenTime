@@ -196,19 +196,19 @@ static void update_proc_o(Layer *layer, GContext *ctx) {
   GPoint t_center;
   // black  hour
   angle = TRIG_MAX_ANGLE * ((((t->tm_hour % 12) * 6) + ((t->tm_min+10) / 10))) / (12 * 6);
-  t_center.x = (int)(sin_lookup(angle) * (int)(radius-2) / TRIG_MAX_RATIO) + center.x,
-  t_center.y = (int)(-cos_lookup(angle) * (int)(radius-2) / TRIG_MAX_RATIO) + center.y,
+  t_center.x = (int)(sin_lookup(angle) * (radius-2) / TRIG_MAX_RATIO) + center.x;
+  t_center.y = (int)(-cos_lookup(angle) * (radius-2) / TRIG_MAX_RATIO) + center.y;
   draw_circle( ctx, settings.BackgroundColor, t_center, 2, 6 );
   // white after hour 
   angle = TRIG_MAX_ANGLE * ((((t->tm_hour % 12) * 6) + ((t->tm_min+30) / 10))) / (12 * 6);
-  t_center.x = (int)(sin_lookup(angle) * (int)(radius+1) / TRIG_MAX_RATIO) + center.x,
-  t_center.y = (int)(-cos_lookup(angle) * (int)(radius+1) / TRIG_MAX_RATIO) + center.y,
+  t_center.x = (int)(sin_lookup(angle) * (radius+1) / TRIG_MAX_RATIO) + center.x;
+  t_center.y = (int)(-cos_lookup(angle) * (radius+1) / TRIG_MAX_RATIO) + center.y;
   draw_circle( ctx, settings.ForegroundColor, t_center, 2, 5 );
   // minute
   if ( settings.RefreshInterval < 60 ) { // display minutes
     angle = TRIG_MAX_ANGLE * (t->tm_min) / 60;  
-    t_center.x = (int)(sin_lookup(angle) * (int)(radius+3) / TRIG_MAX_RATIO) + center.x,
-    t_center.y = (int)(-cos_lookup(angle) * (int)(radius+3) / TRIG_MAX_RATIO) + center.y,
+    t_center.x = (int)(sin_lookup(angle) * (radius+3) / TRIG_MAX_RATIO) + center.x;
+    t_center.y = (int)(-cos_lookup(angle) * (radius+3) / TRIG_MAX_RATIO) + center.y;
     draw_circle( ctx, settings.BackgroundColor, t_center, 1, 2 );
   };
 };
