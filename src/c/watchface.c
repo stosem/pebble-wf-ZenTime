@@ -342,7 +342,7 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
 
   // battery warinig level
   Tuple *battery_warning_t = dict_find(iterator, MESSAGE_KEY_KEY_BATTERY_WARNING);
-  if(battery_warning_t) { settings.BatteryWarning = atoi(battery_warning_t->value->cstring); }
+  if(battery_warning_t) { settings.BatteryWarning = battery_warning_t->value->int32; }
  
 	setColors();	
     status.changed = true;
